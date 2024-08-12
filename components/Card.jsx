@@ -33,11 +33,11 @@ const Card = ({ question , lowestId , highestId , id }) => {
         </div>
       )}
         <div className="mt-4 flex space-x-4">
-        <Link href={`/cards/${question.id - 1}`}className={`px-4 py-2 rounded ${id === lowestId ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} aria-disabled={id === lowestId}>
+        <Link href={`/cards/${question.id - 1}`}className={`px-4 py-2 rounded ${id == lowestId ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} aria-disabled={id === lowestId}>
             Prev
    
         </Link>
-        <Link href={`/cards/${question.id + 1}`}className={`px-4 py-2 rounded ${id === highestId ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} aria-disabled={id === highestId}>
+        <Link href={`/cards/${question.id + 1}`}className={`px-4 py-2 rounded ${id == highestId ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} aria-disabled={id === highestId}>
             Next
   
         </Link>

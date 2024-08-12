@@ -1,7 +1,8 @@
 "use client";
+import Link from "next/link";
 import React, { useState } from "react";
 
-const Card = ({ question }) => {
+const Card = ({ question , lowestId , highestId }) => {
   const [result, setResult] = useState(true);
 
   const handleChange = () => {
@@ -31,6 +32,18 @@ const Card = ({ question }) => {
           <p className="font-semibold text-base">{question.answer}</p>
         </div>
       )}
+        <div className="mt-4 flex space-x-4">
+        <Link href={`/questions/${question.id - 1}`}>
+          <a className={`px-4 py-2 rounded ${id === lowestId ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} aria-disabled={id === lowestId}>
+            Prev
+          </a>
+        </Link>
+        <Link href={`/questions/${question.id + 1}`}>
+          <a className={`px-4 py-2 rounded ${id === highestId ? 'bg-gray-300 cursor-not-allowed' : 'bg-blue-500 text-white'}`} aria-disabled={id === highestId}>
+            Next
+          </a>
+        </Link>
+      </div>
     </div>
   );
 };

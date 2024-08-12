@@ -1,30 +1,37 @@
-import React from 'react'
+import React from 'react';
 import prisma from '@/lib/db';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Card from '@/components/Card';
-const page = async ({params}) => {
-    const id = Number(params.id);
-    if(!id || id.length === 0 || id=== undefined) {
-        return notFound();
-    } 
-    const question = await prisma.question.findUnique({
-        where:{
-            id:id
-        }
-    })
-    console.log(question);
-    if(!question) {
-        return notFound();
-    }
+
+const Page = async ({ params }) => {
+  const id = Number(params.id);
+  if (!id) {
+    return notFound();
+  }
+
+  const question = await prisma.question.findUnique({
+    where: { id }
+  });
+
+  if (!question) {
+    return notFound();
+  }
+
+  const [lowestQuestion, highestQuestion] = await Promise.all([
+    prisma.question.findFirst({ orderBy: { id: 'asc' } }),
+    prisma.question.findFirst({ orderBy: { id: 'desc' } })
+  ]);
+
+  const lowestId = lowestQuestion?.id;
+  const highestId = highestQuestion?.id;
 
   return (
-    <div className="pt-20 h-screen bg-gray-100">
-     <Card question={question}/>
-      <Link href={`/questions/${id-1}`}>prev</Link>
-      <Link href={`/questions/${id+1}`}>Next</Link>
+    <div className="pt-20 h-screen bg-gray-100 flex flex-col items-center">
+      <Card question={question} lowestId={lowestId} highestId={highestId} />
+    
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default Page;

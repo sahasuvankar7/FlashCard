@@ -28,7 +28,7 @@ const Page = async ({ params }) => {
 
   return (
     <div className="pt-20 h-screen bg-gray-100 flex flex-col items-center">
-      <Card question={question} lowestId={lowestId} highestId={highestId} />
+      <Card question={question} lowestId={lowestId} highestId={highestId} id ={id}/>
     
     </div>
   );

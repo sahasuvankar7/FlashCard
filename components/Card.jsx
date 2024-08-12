@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Card = ({ question , lowestId , highestId }) => {
+const Card = ({ question , lowestId , highestId , id }) => {
   const [result, setResult] = useState(true);
 
   const handleChange = () => {

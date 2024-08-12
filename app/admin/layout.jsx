@@ -1,5 +1,6 @@
 import React from "react";
-import { notFound, redirect } from "next/navigation";
+import { notFound, redirect  } from "next/navigation";
+import Link from "next/link";
 import { auth } from "../../auth";
 const layout = async ({ children }) => {
   const session = await auth();
@@ -12,7 +13,9 @@ const layout = async ({ children }) => {
         <div></div>
         <div>
           <button className="bg-blue-700 text-white rounded-md px-6 py-3 relative ">
+            <Link href={`/admin/create`}>
             Create Card
+            </Link>
           </button>
         </div>
       </nav>

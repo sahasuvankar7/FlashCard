@@ -10,12 +10,12 @@ export default async function Navbar() {
   return (
     <header className="flex justify-between items-center px-5 py-3 bg-gray-800 text-white shadow-md">
       <Link href='/' className='flex items-center gap-3'>
-        <Image src='/vercel.svg' alt='logo' width={50} height={50} className="size-10" />
-        <h1 className="text-2xl font-bold">App Name</h1>
+      
+        <h1 className="text-2xl font-bold">FlashCard</h1>
       </Link>
 
       <nav className="flex items-center gap-5">
-        <Link href='/cards' className="hover:text-gray-300">Cards</Link>
+       {user && <Link href='/cards' className="hover:text-gray-300">Cards</Link>}
         {user?.type === 'admin' && <Link href='/admin' className="hover:text-gray-300">Admin</Link>}
         {user ? (
           <Link href='/api/auth/signout' className="hover:text-gray-300">Sign Out</Link>

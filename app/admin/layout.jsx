@@ -4,20 +4,20 @@ import { auth } from "../../auth";
 const layout = async ({ children }) => {
   const session = await auth();
   console.log(session);
-//   if (!session?.user) return redirect("/api/auth/signin");
-//   if (session?.user?.type != "admin") return redirect("/");
+  if (!session?.user) return redirect("/api/auth/signin");
+  if (session?.user?.type != "admin") return redirect("/");
   return (
-    <>
-      <nav className="flex justify-between">
+    <section  className="w-full min-h-screen">
+      <nav className="flex justify-between h-full bg-gray-100  px-5 py-3">
         <div></div>
         <div>
-          <button className="bg-blue-700 text-white rounded-md px-6 py-3 relative top-6">
+          <button className="bg-blue-700 text-white rounded-md px-6 py-3 relative ">
             Create Card
           </button>
         </div>
       </nav>
       {children}
-    </>
+    </section>
   );
 };
 
